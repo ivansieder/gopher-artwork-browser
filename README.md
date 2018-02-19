@@ -1,6 +1,8 @@
 # Gopher Artwork Browser
 Use this repository to visualize the [Gopher Artwork](https://github.com/ashleymcnamara/gophers/) by Ashley McNamara ([@ashleymcnamara](https://twitter.com/ashleymcnamara))
 
+I'm not a design-affinate person at all, so PRs for changing/enhancing the UI are more than welcome.
+
 ![gopher artwork browser](screenshot.png)
 
 ## Usage
