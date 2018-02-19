@@ -19,5 +19,6 @@ Download or clone the repository to a local folder and start it as a local webse
 - Older browsers not supported (uses async-await, fetch, a few more modern features)
 
 ## ToDo (PRs are welcome)
-- Add possibility to add OAuth token or Basic Authentication
-- Add ServiceWorker to enable offline-caching and reduce bandwidth usage and load times
+- Add possibility to add OAuth token or Basic Authentication.
+- Add ServiceWorker to enable offline-caching and reduce bandwidth usage and load times.
+- Add styles to support mobile browsers.
