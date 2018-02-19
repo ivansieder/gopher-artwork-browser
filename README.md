@@ -22,3 +22,4 @@ Download or clone the repository to a local folder and start it as a local webse
 - Add possibility to add OAuth token or Basic Authentication.
 - Add ServiceWorker to enable offline-caching and reduce bandwidth usage and load times.
 - Add styles to support mobile browsers.
+- Add search functionality to filter the images.
