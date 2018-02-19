@@ -1,0 +1,86 @@
+<!doctype html>
+
+<title>Gopher Artwork Browser</title>
+
+<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+
+<header>
+  Gopher Artwork Browser
+</header>
+
+<div id="app">
+  <div id="request-limits">
+    API requests left: {{rateLimit}}
+  </div>
+  <gopher-box v-for="(gopher, index) in gophers" v-bind="gopher" :key="index">{{ gopher.name }}</gopher-box>
+</div>
+
+<footer>
+  Gopher Artwork Browser &copy; Ivan Sieder (
+  <a href="https://twitter.com/ivansieder" target="_blank">@ivansieder</a>)
+  <br> Gopher Artwork &copy; Ashley McNamara (
+  <a href="https://twitter.com/ashleymcnamara" target="_blank">@ashleymcnamara</a>) and Renee French (
+  <a href="https://twitter.com/reneefrench" target="_blank">@reneefrench</a>)
+</footer>
+
+<template id="gopher-box">
+  <div class="gopher-box">
+    <a :href="download_url" target="_blank">
+      <img :src="download_url" :alt="name">
+    </a>
+    <br>
+    <div class="links">
+      <a :href="html_url" target="_blank">GitHub</a> -
+      <a :href="download_url" target="_blank">Image</a>
+    </div>
+  </div>
+</template>
+
+<script>
+  Vue.component('gopher-box', {
+    template: '#gopher-box',
+    props: ['download_url', 'name', 'html_url']
+  })
+
+  const vm = new Vue({
+    el: '#app',
+    data: {
+      gophers: [],
+      rateLimitLimit: null,
+      rateLimitRemaining: null,
+      rateLimitiReset: null
+    },
+    computed: {
+      rateLimit() {
+        if (!this.rateLimitLimit || !this.rateLimitRemaining || !this.rateLimitiReset) {
+          return 'no data available yet'
+        }
+
+        return `${this.rateLimitRemaining} / ${this.rateLimitLimit} (Reset at: ${this.rateLimitiReset})`
+      }
+    },
+    async created() {
+      try {
+        const response = await fetch('https://api.github.com/repos/ashleymcnamara/gophers/contents')
+        this.rateLimitLimit = response.headers.get('X-RateLimit-Limit')
+        this.rateLimitRemaining = response.headers.get('X-RateLimit-Remaining')
+        this.rateLimitiReset = new Date(parseInt(response.headers.get('X-RateLimit-Reset'))).toLocaleTimeString()
+
+        if (response.status !== 200) {
+          this.gophers = []
+          console.log('Looks like there was a problem. Status Code: ' + response.status)
+          return;
+        }
+
+        const jsonResult = await response.json()
+
+        this.gophers = jsonResult.filter(element => element.path.endsWith('.png'))
+      } catch (error) {
+        this.gophers = []
+        console.error('Something failed :(')
+      }
+    }
+  })
+</script>

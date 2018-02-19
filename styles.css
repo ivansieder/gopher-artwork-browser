@@ -1,0 +1,73 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Nunito', sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #3e3d40;
+}
+
+header {
+  background-color: #ffffff;
+  color: #3e3d40;
+  font-size: 50px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  padding: 15px;
+  text-align: center;
+}
+
+footer {
+  margin: 20px auto;
+  max-width: 1024px;
+  text-align: center;
+  width: 100%;
+}
+
+footer,
+footer a,
+footer a:link,
+footer a:visited,
+footer a:active {
+  color: #e3e2e2
+}
+
+div#app {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(7, 1fr);
+  padding: 10px;
+}
+
+div.gopher-box {
+  background-color: #ffffff;
+  display: inline-block;
+  padding: 10px 10px 42px;
+  position: relative;
+  text-align: center;
+}
+
+div.gopher-box,
+div.gopher-box a,
+div.gopher-box a:link,
+div.gopher-box a:visited,
+div.gopher-box a:active {
+  color: #3e3d40;
+}
+
+div.gopher-box img {
+  width: 100%;
+}
+
+div.gopher-box div.links {
+  bottom: 10px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
