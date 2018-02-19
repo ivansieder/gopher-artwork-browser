@@ -39,14 +39,22 @@ footer a:active {
 }
 
 div#app {
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: repeat(7, 1fr);
   padding: 10px;
 }
 
+div#request-limits {
+  margin-bottom: 10px;
+  color: #e3e2e2
+}
+
+div#gopher-boxes-container {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(7, 1fr);
+}
+
 div.gopher-box {
-  background-color: #ffffff;
+  background-color: #e3e2e2;
   display: inline-block;
   padding: 10px 10px 42px;
   position: relative;
